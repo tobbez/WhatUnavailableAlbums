@@ -40,6 +40,8 @@
             this.labelPassword = new System.Windows.Forms.Label();
             this.Username = new System.Windows.Forms.TextBox();
             this.Password = new System.Windows.Forms.TextBox();
+            this.CopyListButton = new System.Windows.Forms.Button();
+            this.ClearListButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,14 +59,14 @@
             this.MusicDirectory.Location = new System.Drawing.Point(101, 6);
             this.MusicDirectory.Name = "MusicDirectory";
             this.MusicDirectory.Size = new System.Drawing.Size(271, 20);
-            this.MusicDirectory.TabIndex = 3;
+            this.MusicDirectory.TabIndex = 1;
             // 
             // BrowseButton
             // 
-            this.BrowseButton.Location = new System.Drawing.Point(378, 6);
+            this.BrowseButton.Location = new System.Drawing.Point(378, 4);
             this.BrowseButton.Name = "BrowseButton";
-            this.BrowseButton.Size = new System.Drawing.Size(116, 20);
-            this.BrowseButton.TabIndex = 4;
+            this.BrowseButton.Size = new System.Drawing.Size(116, 23);
+            this.BrowseButton.TabIndex = 2;
             this.BrowseButton.Text = "Browse...";
             this.BrowseButton.UseVisualStyleBackColor = true;
             this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
@@ -76,7 +78,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(16, 58);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(479, 251);
+            this.listBox1.Size = new System.Drawing.Size(356, 251);
             this.listBox1.TabIndex = 6;
             // 
             // albumBindingSource
@@ -90,15 +92,17 @@
             this.LogBox.Name = "LogBox";
             this.LogBox.Size = new System.Drawing.Size(479, 199);
             this.LogBox.TabIndex = 7;
+            this.LogBox.TabStop = false;
             // 
             // ScanButton
             // 
-            this.ScanButton.Location = new System.Drawing.Point(378, 31);
+            this.ScanButton.Location = new System.Drawing.Point(378, 30);
             this.ScanButton.Name = "ScanButton";
-            this.ScanButton.Size = new System.Drawing.Size(116, 20);
-            this.ScanButton.TabIndex = 8;
+            this.ScanButton.Size = new System.Drawing.Size(116, 23);
+            this.ScanButton.TabIndex = 5;
             this.ScanButton.Text = "Scan";
             this.ScanButton.UseVisualStyleBackColor = true;
+            this.ScanButton.Click += new System.EventHandler(this.ScanButton_Click);
             // 
             // labelUsername
             // 
@@ -123,20 +127,43 @@
             this.Username.Location = new System.Drawing.Point(101, 32);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(100, 20);
-            this.Username.TabIndex = 11;
+            this.Username.TabIndex = 3;
             // 
             // Password
             // 
             this.Password.Location = new System.Drawing.Point(272, 32);
             this.Password.Name = "Password";
+            this.Password.PasswordChar = '*';
             this.Password.Size = new System.Drawing.Size(100, 20);
-            this.Password.TabIndex = 12;
+            this.Password.TabIndex = 4;
+            // 
+            // CopyListButton
+            // 
+            this.CopyListButton.Location = new System.Drawing.Point(378, 59);
+            this.CopyListButton.Name = "CopyListButton";
+            this.CopyListButton.Size = new System.Drawing.Size(116, 23);
+            this.CopyListButton.TabIndex = 11;
+            this.CopyListButton.Text = "Copy list to clipboard";
+            this.CopyListButton.UseVisualStyleBackColor = true;
+            this.CopyListButton.Click += new System.EventHandler(this.CopyListButton_Click);
+            // 
+            // ClearListButton
+            // 
+            this.ClearListButton.Location = new System.Drawing.Point(378, 88);
+            this.ClearListButton.Name = "ClearListButton";
+            this.ClearListButton.Size = new System.Drawing.Size(116, 23);
+            this.ClearListButton.TabIndex = 12;
+            this.ClearListButton.Text = "Clear list";
+            this.ClearListButton.UseVisualStyleBackColor = true;
+            this.ClearListButton.Click += new System.EventHandler(this.ClearListButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 531);
+            this.ClientSize = new System.Drawing.Size(506, 531);
+            this.Controls.Add(this.ClearListButton);
+            this.Controls.Add(this.CopyListButton);
             this.Controls.Add(this.Password);
             this.Controls.Add(this.Username);
             this.Controls.Add(this.labelPassword);
@@ -168,6 +195,8 @@
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.TextBox Username;
         private System.Windows.Forms.TextBox Password;
+        private System.Windows.Forms.Button CopyListButton;
+        private System.Windows.Forms.Button ClearListButton;
 
 
     }
