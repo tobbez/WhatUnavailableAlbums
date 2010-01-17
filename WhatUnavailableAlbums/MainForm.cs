@@ -15,5 +15,14 @@ namespace WhatUnavailableAlbums
         {
             InitializeComponent();
         }
+
+        private void BrowseButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                MusicDirectory.Text = fbd.SelectedPath;
+            }
+        }
     }
 }
