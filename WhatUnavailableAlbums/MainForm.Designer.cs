@@ -42,6 +42,7 @@
             this.Password = new System.Windows.Forms.TextBox();
             this.CopyListButton = new System.Windows.Forms.Button();
             this.ClearListButton = new System.Windows.Forms.Button();
+            this.CheckTextFileAlbumListButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.albumBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -157,11 +158,22 @@
             this.ClearListButton.UseVisualStyleBackColor = true;
             this.ClearListButton.Click += new System.EventHandler(this.ClearListButton_Click);
             // 
+            // CheckTextFileAlbumListButton
+            // 
+            this.CheckTextFileAlbumListButton.Location = new System.Drawing.Point(378, 274);
+            this.CheckTextFileAlbumListButton.Name = "CheckTextFileAlbumListButton";
+            this.CheckTextFileAlbumListButton.Size = new System.Drawing.Size(116, 35);
+            this.CheckTextFileAlbumListButton.TabIndex = 13;
+            this.CheckTextFileAlbumListButton.Text = "Album list from text file...";
+            this.CheckTextFileAlbumListButton.UseVisualStyleBackColor = true;
+            this.CheckTextFileAlbumListButton.Click += new System.EventHandler(this.CheckTextFileAlbumListButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(506, 531);
+            this.Controls.Add(this.CheckTextFileAlbumListButton);
             this.Controls.Add(this.ClearListButton);
             this.Controls.Add(this.CopyListButton);
             this.Controls.Add(this.Password);
@@ -197,6 +209,7 @@
         private System.Windows.Forms.TextBox Password;
         private System.Windows.Forms.Button CopyListButton;
         private System.Windows.Forms.Button ClearListButton;
+        private System.Windows.Forms.Button CheckTextFileAlbumListButton;
 
 
     }

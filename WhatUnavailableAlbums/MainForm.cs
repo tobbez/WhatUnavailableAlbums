@@ -38,7 +38,7 @@ namespace WhatUnavailableAlbums
             {
                 Log("Logging in...");
                 WhatHelper.Login(Username.Text, Password.Text);
-                
+
 
                 foreach (string artistPath in System.IO.Directory.GetDirectories(MusicDirectory.Text))
                 {
@@ -52,6 +52,8 @@ namespace WhatUnavailableAlbums
                             albumBindingSource.Add(album);
                     }
                 }
+
+                Log("Finished");
             }
             catch (Exception ex)
             {
@@ -74,6 +76,47 @@ namespace WhatUnavailableAlbums
         {
             albumBindingSource.Clear();
             Log("Album list cleared");
+        }
+
+        private void CheckTextFileAlbumListButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    Log("Reading file");
+                    System.IO.StreamReader sr = new System.IO.StreamReader(ofd.FileName);
+                    string[] data = sr.ReadToEnd().Split('\n');
+                    sr.Close();
+
+                    Log("Logging in...");
+                    WhatHelper.Login(Username.Text, Password.Text);
+
+                    foreach (string line in data)
+                    {
+                        Application.DoEvents();
+
+                        string[] parts = line.Split('\\');
+                        if (parts.Length != 2)
+                        {
+                            Log("Invalid format of line, skipping: \"" + line + "\"");
+                            continue;
+                        }
+
+                        Album album = new Album(parts[0], parts[1]);
+
+                        Log("Checking for " + album.ToString());
+                        if (!WhatHelper.AlbumIsAvailable(album))
+                            albumBindingSource.Add(album);
+                    }
+                    Log("Finished");
+                }
+                catch (Exception ex)
+                {
+                    Log(ex.GetType().ToString() + ": " + ex.Message);
+                }
+            }
         }
     }
 }
