@@ -36,9 +36,12 @@ namespace WhatUnavailableAlbums
         {
             try
             {
-                Log("Logging in...");
-                WhatHelper.Login(Username.Text, Password.Text);
-
+                Log("Scanning");
+                if (!WhatHelper.LoggedIn)
+                {
+                    Log("Logging in...");
+                    WhatHelper.Login(Username.Text, Password.Text);
+                }
 
                 foreach (string artistPath in System.IO.Directory.GetDirectories(MusicDirectory.Text))
                 {
@@ -90,8 +93,11 @@ namespace WhatUnavailableAlbums
                     string[] data = sr.ReadToEnd().Split('\n');
                     sr.Close();
 
-                    Log("Logging in...");
-                    WhatHelper.Login(Username.Text, Password.Text);
+                    if (!WhatHelper.LoggedIn)
+                    {
+                        Log("Logging in...");
+                        WhatHelper.Login(Username.Text, Password.Text);
+                    }
 
                     foreach (string line in data)
                     {

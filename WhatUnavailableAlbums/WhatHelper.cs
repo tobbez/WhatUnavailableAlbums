@@ -29,7 +29,7 @@ namespace WhatUnavailableAlbums
             StreamWriter sw = new StreamWriter(request.GetRequestStream());
             sw.Write(postData);
             sw.Close();
-            
+
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader sr = new StreamReader(response.GetResponseStream());
@@ -38,6 +38,14 @@ namespace WhatUnavailableAlbums
             {
                 throw new Exception("WhatHelper: Login failed");
             }
+        }
+
+        public static bool LoggedIn 
+        {
+            get 
+            { 
+                return !FetchPage("login.php").Contains("id=\"loginform\""); 
+            } 
         }
 
         public static bool AlbumIsAvailable(Album album)
