@@ -40,17 +40,18 @@ namespace WhatUnavailableAlbums
             }
         }
 
-        public static bool LoggedIn 
+        public static bool LoggedIn
         {
-            get 
-            { 
-                return !FetchPage("login.php").Contains("id=\"loginform\""); 
-            } 
+            get
+            {
+                return !FetchPage("login.php").Contains("id=\"loginform\"");
+            }
         }
 
         public static bool AlbumIsAvailable(Album album)
         {
-            string page = "torrents.php?searchstr=" + System.Web.HttpUtility.UrlEncode(album.ArtistName + " " + album.AlbumName);
+            string page = "torrents.php?action=advanced&artistname=" + System.Web.HttpUtility.UrlEncode(album.ArtistName) +
+                "&groupname=" + System.Web.HttpUtility.UrlEncode(album.AlbumName);
             string result = FetchPage(page);
 
             // This check is kind of ugly, but it works
