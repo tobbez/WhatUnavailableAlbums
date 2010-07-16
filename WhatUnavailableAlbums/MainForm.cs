@@ -14,6 +14,8 @@ namespace WhatUnavailableAlbums
         public MainForm()
         {
             InitializeComponent();
+
+            AlbumSourceComboBox.SelectedIndex = 0;
         }
 
         private void Log(string message)
@@ -23,17 +25,27 @@ namespace WhatUnavailableAlbums
             LogBox.ScrollToCaret();
         }
 
-        private void BrowseButton_Click(object sender, EventArgs e)
+        private void ScanButton_Click(object sender, EventArgs e)
         {
+            if (AlbumSourceComboBox.SelectedIndex == 0) // Directory structure
+                ScanWithDirectoryStructure();
+            else if (AlbumSourceComboBox.SelectedIndex == 1) // Text file
+                ScanWithTextFile();    
+        }
+
+        private void ScanWithDirectoryStructure()
+        {
+            string music_directory;
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                MusicDirectory.Text = fbd.SelectedPath;
+                music_directory = fbd.SelectedPath;
             }
-        }
+            else
+            {
+                return;
+            }
 
-        private void ScanButton_Click(object sender, EventArgs e)
-        {
             try
             {
                 Log("Scanning");
@@ -42,8 +54,8 @@ namespace WhatUnavailableAlbums
                     Log("Logging in...");
                     WhatHelper.Login(Username.Text, Password.Text);
                 }
-
-                foreach (string artistPath in System.IO.Directory.GetDirectories(MusicDirectory.Text))
+                
+                foreach (string artistPath in System.IO.Directory.GetDirectories(music_directory))
                 {
                     foreach (string albumName in System.IO.Directory.GetDirectories(artistPath))
                     {
@@ -55,7 +67,7 @@ namespace WhatUnavailableAlbums
                             albumBindingSource.Add(album);
                     }
                 }
-
+                
                 Log("Finished");
             }
             catch (Exception ex)
@@ -81,7 +93,7 @@ namespace WhatUnavailableAlbums
             Log("Album list cleared");
         }
 
-        private void CheckTextFileAlbumListButton_Click(object sender, EventArgs e)
+        private void ScanWithTextFile()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
